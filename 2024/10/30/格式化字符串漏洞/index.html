@@ -27,7 +27,7 @@
 <meta property="og:description" content="格式化字符串漏洞格式化字符串（部分）%[parameter][length]type  parameter  n$，获取格式化字符串中的指定参数（format后第n个参数）   length，输出的长度  hh，输出一个字节 h，输出一个双字节   type  s：输出变量指向的字符串  c：输出变量指向的char  p：输出变量的内容，十六进制，类型为size_t（其实是用来打印指针的）  n：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-30T11:32:07.000Z">
-<meta property="article:modified_time" content="2024-10-30T14:09:28.253Z">
+<meta property="article:modified_time" content="2024-10-30T14:12:03.713Z">
 <meta property="article:author" content="某科学的Pwner">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -309,7 +309,7 @@
 </ul>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>格式化字符串函数可以接受可变数量的参数，并将<strong>第一个参数作为格式化字符串，根据其来解析之后的参数</strong>。</p>
 <p>而当我们可以控制格式化字符串的时候，就可以控制解析参数的方式。</p>
-<h3 id="栈上的格式化字符串漏洞"><a href="#栈上的格式化字符串漏洞" class="headerlink" title="栈上的格式化字符串漏洞"></a>栈上的格式化字符串漏洞</h3><p>我们一般很难控制寄存器的值，但栈上的数据更容易控制。</p>
+<h2 id="栈上的格式化字符串漏洞"><a href="#栈上的格式化字符串漏洞" class="headerlink" title="栈上的格式化字符串漏洞"></a>栈上的格式化字符串漏洞</h2><p>我们一般很难控制寄存器的值，但栈上的数据更容易控制。</p>
 <p>首先介绍如何计算栈上目标地址对应的n。</p>
 <ol>
 <li><p>直接计算</p>
