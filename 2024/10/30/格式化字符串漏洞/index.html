@@ -27,7 +27,7 @@
 <meta property="og:description" content="格式化字符串漏洞格式化字符串（部分）%[parameter][length]type  parameter  n$，获取格式化字符串中的指定参数（format后第n个参数）   length，输出的长度  hh，输出一个字节 h，输出一个双字节   type  s：输出变量指向的字符串  c：输出变量指向的char  p：输出变量的内容，十六进制，类型为size_t（其实是用来打印指针的）  n：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-30T11:32:07.000Z">
-<meta property="article:modified_time" content="2024-10-30T14:12:03.713Z">
+<meta property="article:modified_time" content="2024-10-30T14:15:39.600Z">
 <meta property="article:author" content="某科学的Pwner">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -316,13 +316,10 @@
 <p><code>$6</code>代表<code>rsp</code>指向的的内存，相应的，<code>$7</code>对应<code>rsp+8</code>，<code>$8</code>对应<code>rsp+0x10</code>指向的内存</p>
 <p>于是我们可以通过对应内存相对于<code>rsp</code>的位置来计算，这个偏移可以通过IDA得到，也可以通过gdb得到</p>
 <p>例如：</p>
-<pre><code class="hljs">rsp  6
-0x08 7
-0x10 目标地址
-</code></pre>
 </li>
 </ol>
-<p>​       此时<code>printf(&quot;%8$p&quot;);</code>会输出目标地址</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">rsp</span>  <span class="hljs-number">6</span><br><span class="hljs-attribute">0x08</span> <span class="hljs-number">7</span><br><span class="hljs-attribute">0x10</span> 目标地址<br></code></pre></td></tr></table></figure>
+<p>​        此时<code>printf(&quot;%8$p&quot;);</code>会输出目标地址</p>
 <ol start="2">
 <li><p>通过不断尝试来寻找格式化字符串的值</p>
 <ul>
